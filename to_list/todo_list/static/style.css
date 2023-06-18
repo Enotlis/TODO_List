@@ -1,0 +1,28 @@
+﻿#navbar-content{
+    top: 55px;
+    background-color: #b9b9b9;
+}
+
+#nav-fix {
+    transition: all  .1s ease-in-out;
+}
+
+.sheensay_fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding-top: 125px;
+    animation-name: fadeInUp;
+    animation-duration: 1s;
+}
+
+@keyframes fadeInUp{
+    from {
+        opacity: 0;
+        top: -50px;
+    }
+    to {
+        opacity: 1;
+        top: 5px;
+    }
+}

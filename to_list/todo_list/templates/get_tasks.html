@@ -1,0 +1,56 @@
+﻿{% extends "basic.html" %}
+{% block title %}Задания{% endblock %}
+{% block content %}
+{% if tasks %}
+<div id="navbar-content" class="navbar sticky-top text-dark p-2">
+    <form class="ms-auto" action="{% url 'add_task' %}">
+        <button class="btn btn-success mt-2" type="submit">Создать задание</button>
+    </form>
+</div>
+<div class="mt-4 pt-1 mx-1">
+    <table class="table table-striped align-middle">
+        <thead class="align-middle table-success" align="center">
+            <tr>
+                <th scope="col">Название</th>
+                <th scope="col">Описание</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks|dictsort:"pk" %}
+            {% if task.status == 'выполнено' %}
+            <tr class="bg-success bg-opacity-50">
+                {% else %}
+            <tr>
+                {% endif %}
+                <td class="col-6" align="center">
+                    {{ task.name }}
+                </td>
+                <td class="col-3" align="center">{{ task.description }}</td>
+                <td class="col-3" align="center">
+                    <form action="{% url 'complete_task'  pk=task.pk %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-success mt-2" type="submit">Отметить как выполненную</button>
+                    </form>
+                </td>
+                <td align="right">
+                    <form action="{% url 'delete_task' pk=task.pk%}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-danger mt-2" type="submit">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="py-5" align="center">
+    У вас пока нет заданий
+    <form action="{% url 'add_task' %}">
+        <button class="btn btn-success mt-2" type="submit">Создать задание</button>
+    </form>
+</div>
+{% endif %}
+{% endblock %}

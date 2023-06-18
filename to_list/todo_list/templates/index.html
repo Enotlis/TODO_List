@@ -1,0 +1,17 @@
+﻿{% extends "basic.html" %}
+
+{% block title %}Главная страница{% endblock %}
+{% block content %}
+<div class="py-5">
+    <h3 align="center">
+        Добро пожаловать
+        {% if user.is_authenticated %}
+        {{user.username}}
+        {% else %}
+        заблудший путник
+        {% endif %}
+    </h3>
+    <p class="lead">Это тестовое задание</p>
+</div>
+{% endblock %}
+

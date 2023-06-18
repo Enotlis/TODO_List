@@ -1,0 +1,12 @@
+﻿{% extends 'basic.html' %}
+{% block content %}
+<div class="mt-4 pt-1">
+    <h2>Регистрация</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <button class="btn btn-success mt-2" type="submit">Зарегистрироваться</button>
+    </form>
+</div>
+{% endblock %}

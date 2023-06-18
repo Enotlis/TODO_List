@@ -1,0 +1,16 @@
+﻿{% extends "basic.html" %}
+{% block title %}Добавить{% endblock %}
+{% block content %}
+<div class="pt-5 m-2">
+    <div class="form-group">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="col mt-2">
+                <button class="btn btn-success" type="submit">Добавить</button>
+                <button class="btn btn-dark" onclick="javascript:history.go(-1)">Назад</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
